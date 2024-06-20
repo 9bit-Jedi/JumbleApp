@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}JumbleApp{% endblock title %}
+
+{% block content %}
+
+  <section class="section profile_container" >
+    <h1 class="title">My Chats</h1>
+  </section>    
+    
+  <section class="section chat-container">
+    <h1 class="chat-title">Who would you like to chat with ?</h1>
+    
+
+    {% for user in user_list %}
+      <a href="{% url 'private_chat_page' user.id %}">{{ user.username }}</a> <br>  
+    {% endfor %}
+    
+  </section>
+
+
+    
+    {% endblock content %}

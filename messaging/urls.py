@@ -1,9 +1,10 @@
 from django.urls import path
 # from .views import GetQuestionAll, GetQuestion, GetQuestionAllSrc, GetQuestionSrcChapter
-from .views import chatPage
-from messaging.consumers import ChatConsumer
+from .views import *
 
 
 urlpatterns = [
-    path("", chatPage, name="chatPage"),
+    path("private/", private_chat_list, name="private_chat_list"),
+    path("private/<username>/", private_chat_page, name="private_chat_page"),
+    path("group/", group_chat_page, name="group_chat_page"),
 ]

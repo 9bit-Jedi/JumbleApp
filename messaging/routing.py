@@ -1,8 +1,7 @@
-from django.urls import path , include
-from messaging.consumers import ChatConsumer
+from django.urls import path
+from messaging.consumers import GroupChatConsumer, PrivateChatConsumer
 
-# Here, "" is routing to the URL ChatConsumer which 
-# will handle the chat functionality.
 websocket_urlpatterns = [
-  path("" , ChatConsumer.as_asgi()) , 
-] 
+    path("" , GroupChatConsumer.as_asgi()) , 
+    path('ws/chat/<str:username>/', PrivateChatConsumer.as_asgi()),
+]
