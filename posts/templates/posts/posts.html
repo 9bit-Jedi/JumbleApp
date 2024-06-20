@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}JumbleApp{% endblock title %}
+
+{% block content %}
+    <section class="section">
+      <h1 class="title">Posts</h1>
+      <h2 class="subtitle">
+        This is the post list of this <strong>awesome</strong> social media platform.
+      </h2>
+      <a href="{% url 'create_post' %}"><button class="button is-primary">Create Post</button></a>
+    </section>
+    
+    <section class="section">
+      {% for post in posts %}
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <img src="{{post.image.url}}" alt="Placeholder image"/>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="https://bulma.io/assets/images/placeholders/96x96.png" alt="Placeholder image" />
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">{{post.author}}</p>
+                <p class="subtitle is-6">@{{post.author}}</p>
+              </div>
+            </div>
+        
+            <div class="content">
+              {{post.text}}
+              <br />
+              <time datetime="2016-1-1">{{post.created_at}}</time>
+            </div>
+          </div>
+          <div class="card-content">        
+            <div class="content">
+              <a class="button is-link" href="{% url 'edit_post' post.pk%}">Edit</a>
+              <a class="button is-danger" href="{% url 'delete_post' post.pk%}">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+    
+    
+{% endblock content %}

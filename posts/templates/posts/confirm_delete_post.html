@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}JumbleApp{% endblock title %}
+
+{% block content %}
+    <section class="section">
+      <h1 class="title">Posts</h1>
+      <h2 class="subtitle">
+        Delete Post Here.
+      </h2>
+    </section>
+
+    <form  method="post" enctype="multipart/form-data" class="form">
+      {% csrf_token %}
+      <div class="control">
+        <button class="button is-danger" type="submit">Confirm Delete Post</button>
+        <a class="button is-primary" href="{% url 'post_list' %}">Go Back</a>
+      </div>
+    </form>
+
+    
+{% endblock content %}

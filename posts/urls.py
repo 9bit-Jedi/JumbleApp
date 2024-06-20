@@ -1,8 +1,9 @@
 from django.urls import path
-# from .views import GetQuestionAll, GetQuestion, GetQuestionAllSrc, GetQuestionSrcChapter
-# from .views import ChapterList_Subject, ViewQuestionImage, ViewExplanationImage, ViewIcon
+from .views import *
 
 urlpatterns = [
-    # path("chapters/", FetchChapters.as_view(), name="All Chapters"),
-    # path("list-chapters/<subject_id>", ChapterList_Subject.as_view(), name="list chapters using queryparam subject_name = subject"),
+    path("", post_list , name="post_list"),
+    path("create-post", create_post , name="create_post"),
+    path("edit-post/<post_id>", edit_post , name="edit_post"),
+    path("delete-post/<post_id>", delete_post , name="delete_post"),
 ]

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}JumbleApp{% endblock title %}
+
+{% block content %}
+    <section class="section">
+      <h1 class="title">Posts</h1>
+      <h2 class="subtitle">
+        Edit Post Here.
+      </h2>
+    </section>
+
+    <form  method="post" enctype="multipart/form-data" class="form">
+      {% csrf_token %}
+      {{form.as_p}}
+      <div class="control">
+        <button class="button is-link" type="submit">Submit</button>
+      </div>
+    </form>
+
+    
+{% endblock content %}
