@@ -1,6 +1,6 @@
 .button.is-primary {
-  background-color: #ff33d6;
+  background-color: #ff33d6 !important ;
 }
 .button.is-link {
-  background-color: #ff33d6;
+  background-color: #ff33d6 !important ; 
 }

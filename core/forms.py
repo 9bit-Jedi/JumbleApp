@@ -12,3 +12,11 @@ class UserLoginForm(AuthenticationForm):
   class Meta:
     model = User
     fields = ('username', 'password')
+    
+class EditProfileForm(ModelForm):
+  class Meta:
+    model = User
+    fields = ['first_name', 'last_name', 'profile_picture', 'bio']
+    # widgets = {
+    #   'title': forms.text(attrs={'class': 'input'}),
+    # }

@@ -3,31 +3,39 @@
 {% block title %}JumbleApp{% endblock title %}
 
 {% block content %}
-    <section class="section">
-      <h1 class="title">My Profile</h1>
-      
-      <h2 class='title'>{{ user.username }}</h2>
 
+  <section class="section profile_container" >
+    <h1 class="title">My Profile</h1>
+  </section>
+
+  <section class=" profile_container" >
+    <section class="section">
+      
       {% if user.profile_picture %}
+      <img class="profile_picture" src="{{user.profile_picture.url}}" alt="Profile Picture" width="150">
       {% else %}
-      <img src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="Profile Picture" width="150">
+      <img class="profile_picture" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="Profile Picture" width="150">
       <p><a href="{% url 'edit_profile' %}">Add Profile Picture</a></p>
       {% endif %}
-
-      <p>@{{ user.username }}</p>
+      
+      <h2 class='title'>@{{ user.username }}</h2>
+      <a class="button" href="{% url 'edit_profile' %}">Edit Profile</a> 
+      
+    </section>
+    <section class="section">
+      
       <p>First Name: {{ user.first_name }}</p>
       <p>Last Name: {{ user.last_name }}</p>
       <p>Email: {{ user.email }}</p>
-
+      
       {% if user.bio %}
-        <p>Bio: {{ user.bio }}</p>
+      <p>Bio: {{ user.bio }}</p>
       {% else %}
-        <p><a href="">Add Bio</a></p>
+      <p><a href="{% url 'edit_profile' %}">Add Bio</a></p>
       {% endif %}
       
-      {% comment %} <a href="{% url 'edit_profile' %}">Edit Profile</a> | <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
-      
-    </section>
+    </section>   
+  </section>   
       
     
 {% endblock content %}

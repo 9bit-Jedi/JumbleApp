@@ -1,7 +1,9 @@
 from django.urls import path
 # from .views import GetQuestionAll, GetQuestion, GetQuestionAllSrc, GetQuestionSrcChapter
-# from .views import ChapterList_Subject, ViewQuestionImage, ViewExplanationImage, ViewIcon
+from .views import chatPage
+from messaging.consumers import ChatConsumer
+
 
 urlpatterns = [
-    # path("/", .as_view(), name=""),
+    path("", chatPage, name="chatPage"),
 ]

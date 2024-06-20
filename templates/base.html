@@ -12,6 +12,13 @@
             padding: 0px;
             text-decoration: none;
         }
+        .profile_picture{
+          min-width: 300px;
+        }
+        .profile_container{
+          display: flex;
+          flex-direction: row;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +47,7 @@
               Posts
             </a>
       
-            <a class="navbar-item">
+            <a href="{% url 'chatPage' %}" class="navbar-item">
               Messaging
             </a>
       
@@ -100,7 +107,7 @@
                     <div class="dropdown-menu" id="profile-dropdown" role="menu">
                         <div class="dropdown-content">
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a> 
-                            <a href="#" class="dropdown-item toggle-dark-mode">Toggle Dark Mode</a>
+                            <button href="#"  action="toggleDarkMode()" class="dropdown-item toggle-dark-mode" >Toggle Dark Mode</button>
                             <a href="{% url 'user_logout' %}" class="dropdown-item">Logout</a>
                         </div>
                     </div>
@@ -132,6 +139,8 @@
             });
         });
     });
+    
+    
     </script>
 
 </body>

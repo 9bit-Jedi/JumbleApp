@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm, UserLoginForm, EditProfileForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
-from django.conf import settings
-User = settings.AUTH_USER_MODEL
+# from django.conf import settings
+# User = settings.AUTH_USER_MODEL
+from core.models import User
 
 from posts.views import post_list
 
@@ -34,7 +35,7 @@ def user_login(request):
     if form.is_valid():
       username = form.cleaned_data['username']
       password = form.cleaned_data['password']
-      user = authenticate(request, username='utsah', password='123')
+      user = authenticate(request, username=username, password=password)
       print(username, password)
       
       print(user)
@@ -62,6 +63,19 @@ def profile(request):
   user = request.user
   return render(request, 'core/profile.html', {'user': user})
 
+
+@login_required
+def edit_profile(request):
+  user = get_object_or_404(User, pk=request.user.id)
+  # print (user.pk)
+  if request.method == "POST":
+    form = EditProfileForm(request.POST, request.FILES, instance=user)
+    if form.is_valid():
+      form.save()
+      return redirect('profile') 
+  else:
+    form = EditProfileForm(instance=user)
+    return render(request, 'core/edit_profile.html', {"form":form})
 
 # @login_required
 # def edit_profile(request):
