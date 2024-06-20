@@ -5,6 +5,7 @@
     <title>{% block title %}JumbleApp{% endblock title %}</title>
     {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <style>
         *{
             margin: 0px;
@@ -66,7 +67,7 @@
             
             {% else %}
             
-              <div class="navbar-item">
+              {% comment %} <div class="navbar-item">
                 <div class="buttons">
 
                   <a class="button is-primary" href="{% url 'profile' %}">
@@ -81,14 +82,35 @@
                   </form>
 
                 </div>
+              </div> {% endcomment %}
+              <div class="navbar-item">
+                <a href="{% url 'create_post' %}"><button class="button is-primary">Create Post</button></a>
               </div>
+
+              <div class="navbar-item">
+                <div class="dropdown is-right">
+                    <div class="dropdown-trigger">
+                        <button class="button is-primary" aria-haspopup="true" aria-controls="profile-dropdown">
+                            <span>@{{user.username}}</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="profile-dropdown" role="menu">
+                        <div class="dropdown-content">
+                            <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a> 
+                            <a href="#" class="dropdown-item toggle-dark-mode">Toggle Dark Mode</a>
+                            <a href="{% url 'user_logout' %}" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
 
             {% endif %}
 
           </div>
-          {% comment %} 
-            add alternate "navbar-end" here
-          {% endcomment %}
         </div>
       </nav>
 
@@ -96,6 +118,21 @@
       {% block content %}
       {% endblock content %}
     </div>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $dropdowns = Array.prototype.slice.call(document.querySelectorAll('.dropdown'), 0);
+    
+        // Add a click event on each of them
+        $dropdowns.forEach(el => {
+            el.addEventListener('click', () => {
+                el.classList.toggle('is-active');
+            });
+        });
+    });
+    </script>
 
 </body>
 </html>

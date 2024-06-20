@@ -9,7 +9,9 @@
       <h2 class='title'>{{ user.username }}</h2>
 
       {% if user.profile_picture %}
-          <img src="{{ user.profile_picture.url }}" alt="Profile Picture" width="150">
+      {% else %}
+      <img src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="Profile Picture" width="150">
+      <p><a href="{% url 'edit_profile' %}">Add Profile Picture</a></p>
       {% endif %}
 
       <p>@{{ user.username }}</p>
