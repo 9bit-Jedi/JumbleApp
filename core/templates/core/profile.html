@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}JumbleApp{% endblock title %}
+
+{% block content %}
+    <section class="section">
+      <h1 class="title">My Profile</h1>
+      
+      <h2 class='title'>{{ user.username }}</h2>
+
+      {% if user.profile_picture %}
+          <img src="{{ user.profile_picture.url }}" alt="Profile Picture" width="150">
+      {% endif %}
+
+      <p>@{{ user.username }}</p>
+      <p>First Name: {{ user.first_name }}</p>
+      <p>Last Name: {{ user.last_name }}</p>
+      <p>Email: {{ user.email }}</p>
+
+      {% if user.bio %}
+        <p>Bio: {{ user.bio }}</p>
+      {% else %}
+        <p><a href="">Add Bio</a></p>
+      {% endif %}
+      
+      {% comment %} <a href="{% url 'edit_profile' %}">Edit Profile</a> | <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+      
+    </section>
+      
+    
+{% endblock content %}

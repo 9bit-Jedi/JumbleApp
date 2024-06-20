@@ -20,7 +20,7 @@ def post_list(request):
   posts = Post.objects.all().order_by('-created_at')
   return render(request, 'posts/posts.html', {'posts':posts})
 
-# @login_required
+@login_required
 def create_post(request):
   if request.method == "POST":
     form = PostForm(request.POST, request.FILES)
@@ -44,7 +44,7 @@ def edit_post(request, post_id):
     form = PostForm(instance=post)
     return render(request, 'posts/edit_post.html', {"form":form})
 
-# @login_required
+@login_required
 def delete_post(request, post_id):
   post = get_object_or_404(Post, pk=post_id, author=request.user)
   if request.method == "POST":

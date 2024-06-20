@@ -43,23 +43,48 @@
               Messaging
             </a>
       
-            <a class="navbar-item">
+            {% comment %} <a class="navbar-item" href="{% url 'profile' %}">
               My profile
-            </a>
+            </a> {% endcomment %}
       
           </div>
       
+
           <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary">
-                  Sign Up
-                </a>
-                <a class="button is-light">
-                  Log in
-                </a>
+            {% if not user.is_authenticated %}
+            
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-primary" href="{% url 'register' %}">
+                    Register
+                  </a>
+                  <a class="button is-light" href="{% url 'user_login' %}">
+                    Log in
+                  </a>
+                </div>
               </div>
-            </div>
+            
+            {% else %}
+            
+              <div class="navbar-item">
+                <div class="buttons">
+
+                  <a class="button is-primary" href="{% url 'profile' %}">
+                    Profile
+                  </a>
+
+                  <form  method="post" class="form" action="{% url 'user_logout' %}">
+                    {% csrf_token %}
+                    <div class="control">
+                      <button class="button is-danger" type="submit">Log Out</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+            {% endif %}
+
           </div>
           {% comment %} 
             add alternate "navbar-end" here
